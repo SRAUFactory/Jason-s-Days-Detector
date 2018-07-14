@@ -1,9 +1,16 @@
 package main
 
+import "flag"
 import "fmt"
 import "time"
 
+var (
+	year = flag.Int("y", 3, "検出する年数")
+)
+
 func main() {
+	flag.Parse()
+
 	// 現在日取得
 	t := time.Now()
 	printDate(t)
@@ -15,7 +22,7 @@ func main() {
 	}
 
 	// 指定年数分の日付検出
-	for i := 0; i < 3*12; i++ {
+	for i := 0; i < *year*12; i++ {
 		t = t.AddDate(0, 1, 0)
 		if t.Weekday() == 5 {
 			printDate(t)
